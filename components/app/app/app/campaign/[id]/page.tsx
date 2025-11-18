@@ -38,3 +38,17 @@ export default async function CampaignPage({ params }: { params: { id: string } 
     </div>
   );
 }
+const shareCampaign = () => {
+  if (navigator.share) {
+    navigator.share({
+      title: campaign.title,
+      text: campaign.description,
+      url: window.location.href,
+    });
+  } else {
+    navigator.clipboard.writeText(window.location.href);
+    alert('Link copied to clipboard!');
+  }
+};
+
+// Add a button: <Button onClick={shareCampaign}>Share</Button>
